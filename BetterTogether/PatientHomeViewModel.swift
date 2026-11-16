@@ -11,6 +11,6 @@ import Foundation
 final class PatientHomeViewModel {
     var patientName: String = "JOHN DOE"
     var showOptions: Bool = false
-    
+    var showMoodSheet: Bool = false
     
 }

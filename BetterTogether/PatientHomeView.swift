@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PatientHomeView: View {
     
+    @Environment(\.theme) private var theme
+    
     @State private var viewModel = PatientHomeViewModel()
     
     var body: some View {
@@ -31,7 +33,14 @@ struct PatientHomeView: View {
     
     var responseOptionsView: some View {
         HStack {
-            Button("Mood") {}
+            Button(action: {
+                viewModel.showMoodSheet = true
+            }) {
+                Text("Mood")
+                    .foregroundStyle(.white)
+                    .padding()
+                    .glassEffect(.regular.tint(.blue).interactive())
+            }
             Button(action: {
                 viewModel.showOptions = false
             }) {
