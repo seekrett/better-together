@@ -26,8 +26,11 @@ struct PatientHomeView: View {
         }) {
             Text("Reply")
                 .foregroundStyle(.white)
-                .padding()
-                .glassEffect(.regular.tint(.blue).interactive())
+                .frame(width: 90, height: 90)
+                .glassEffect(
+                    .regular.tint(.cyan).interactive(),
+                    in: Circle()
+                )
         }
     }
     
@@ -39,14 +42,21 @@ struct PatientHomeView: View {
                 Text("Mood")
                     .foregroundStyle(.white)
                     .padding()
-                    .glassEffect(.regular.tint(.blue).interactive())
+                    .glassEffect(.regular.tint(.cyan).interactive())
             }
             Button(action: {
                 viewModel.showOptions = false
             }) {
                 Image(systemName: "xmark")
             }
-            Button("Symptoms") {}
+            Button(action: {
+                viewModel.showSymptomsSheet = true
+            }) {
+                Text("Symptoms")
+                    .foregroundStyle(.white)
+                    .padding()
+                    .glassEffect(.regular.tint(.cyan).interactive())
+            }
         }
     }
 }
