@@ -15,14 +15,16 @@ struct PatientHomeView: View {
     @State private var animate = false
     
     var body: some View {
-        VStack(spacing: 40) {
-            Image("Cloud")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 250, height: 250)
-            headline
-            if !viewModel.showOptions { replyButton }
-                else { responseOptionsView }
+        NavigationStack {
+            VStack(spacing: 40) {
+                Image("Cloud")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 250, height: 250)
+                headline
+                if !viewModel.showOptions { replyButton }
+                    else { responseOptionsView }
+            }
         }
     }
     
@@ -66,22 +68,20 @@ struct PatientHomeView: View {
     
     var responseOptionsView: some View {
         HStack {
-            Button(action: {
-                viewModel.showMoodSheet = true
-            }) {
+            NavigationLink(destination: MoodView()) {
                 Text("Mood")
                     .foregroundStyle(.white)
                     .padding()
                     .glassEffect(.regular.tint(.cyan).interactive())
             }
+            
             Button(action: {
                 viewModel.showOptions = false
             }) {
                 Image(systemName: "xmark")
             }
-            Button(action: {
-                viewModel.showSymptomsSheet = true
-            }) {
+            
+            NavigationLink(destination: SymptomView()){
                 Text("Symptoms")
                     .foregroundStyle(.white)
                     .padding()
